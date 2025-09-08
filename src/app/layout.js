@@ -1,6 +1,6 @@
 import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
-import {  CartProvider } from "@/context/CartContent";
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       
       <body className={`${inter.variable} ${bebasNeue.variable}`}>
-        <CartProvider>{children}</CartProvider>
+      {children}
       </body>
     </html>
   );
