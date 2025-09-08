@@ -1,6 +1,6 @@
 import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
-import { CartProvider } from "@/context/CartContent";
+import {  CartProvider } from "@/context/CartContent";
 
 const inter = Inter({
   subsets: ["latin"],
