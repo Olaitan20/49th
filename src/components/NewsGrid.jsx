@@ -59,33 +59,36 @@ export default function NewsGrid() {
             <p className="text-[14px] uppercase mb-[8px] tracking-widest text-[#FFFFFF80]">/// LATEST</p>
             <p className="text-[16px] uppercase font-[800]">fresh of the press</p>
         </div>
-        <div className=" grid grid-cols-3 ">
+         {/* Articles Grid */}
+              <div className="grid grid-cols-3 ">
+                {articles.map((article) => (
+                  <div
+                    key={article.id}
+                    className="bg-[#fff]   shadow-sm hover:shadow-md transition"
+                  >
+                    {/* Image Wrapper */}
+                    <div className="relative w-full h-[200px]">
+                      <Image
+                        src={article.image}
+                        alt={article.title}
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+                    </div>
         
-      {articles.map((article) => (
-        <div key={article.id} className="flex flex-col w-[414px] h-[302px] overflow-hidden">
-          {/* Image */}
-          <div className="relative w-[414px] h-[200px]">
-            <Image
-              src={article.image}
-              alt={article.title}
-              fill
-              className="object-cover rounded-lg"
-              priority
-            />
-          </div>
-
-          {/* Text */}
-          <div className="bg-[#fff] p-[16px] w-[414px] h-[102px]">
-            <p className="text-[14px] line-clamp-1 mb-[15px] text-[#000] font-[700] hover:underline cursor-pointer leading-snug">
-              {article.title}
-            </p>
-            <p className="text-[12px] text-[#00000080] mt-[4px]">
-              {article.author} • {article.category} • {article.time}
-            </p>
-          </div>
-        </div>
-      ))}
-    </div>
+                    {/* Text */}
+                    <div className="p-[16px]">
+                      <p className="text-[14px] text-[#000] mb-[15px] line-clamp-1 font-[700] hover:underline cursor-pointer leading-snug">
+                        {article.title}
+                      </p>
+                      <p className="text-[12px] text-[#00000080]">
+                        {article.author} • {article.category} • {article.time}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
     </section>
   );
 }

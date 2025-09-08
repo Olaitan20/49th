@@ -69,7 +69,7 @@ export default function Music() {
         {articles.map((article) => (
           <div
             key={article.id}
-            className="bg-[#fff]  overflow-hidden shadow-sm hover:shadow-md transition"
+            className="bg-[#fff]   shadow-sm hover:shadow-md transition"
           >
             {/* Image Wrapper */}
             <div className="relative w-full h-[200px]">
@@ -84,7 +84,7 @@ export default function Music() {
 
             {/* Text */}
             <div className="p-[16px]">
-              <p className="text-[14px] text-[#000] mb-[8px] line-clamp-2 font-[700] hover:underline cursor-pointer leading-snug">
+              <p className="text-[14px] text-[#000] mb-[15px] line-clamp-1 font-[700] hover:underline cursor-pointer leading-snug">
                 {article.title}
               </p>
               <p className="text-[12px] text-[#00000080]">
