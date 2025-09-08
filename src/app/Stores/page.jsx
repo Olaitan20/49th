@@ -1,6 +1,5 @@
 "use client";
 import { products } from "@/data/products";
-import { useCart } from "@/context/CartContent";
 import React, { useState } from "react";
 import Image from "next/image";
 
