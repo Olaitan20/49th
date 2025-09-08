@@ -1,14 +1,22 @@
 import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 
-
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["100","200","300","400","500","600","700","800","900"],
+  weight: [
+    "100",
+    "200",
+    "300",
+    "400",
+    "500",
+    "600",
+    "700",
+    "800",
+    "900",
+  ],
   variable: "--font-inter",
   display: "swap",
 });
-
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -21,12 +29,18 @@ export const metadata = {
   description: "The 49th Streetb",
 };
 
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      
       <body className={`${inter.variable} ${bebasNeue.variable}`}>
-      {children}
+        {children}
       </body>
     </html>
   );
