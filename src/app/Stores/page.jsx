@@ -4,20 +4,41 @@ import React, { useState } from "react";
 import Image from "next/image";
 
 export default function StorePage() {
-  const { cart, addToCart, removeFromCart } = useCart();
+  const [cart, setCart] = useState([]);
   const [isCheckoutOpen, setCheckoutOpen] = useState(false);
 
-  // total items in cart
-  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+  // helper functions
+  const addToCart = (product) => {
+    setCart((prev) => {
+      const existing = prev.find((item) => item.id === product.id);
+      if (existing) {
+        return prev.map((item) =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      }
+      return [...prev, { ...product, quantity: 1 }];
+    });
+  };
 
-  // total price
+  const removeFromCart = (id) => {
+    setCart((prev) =>
+      prev
+        .map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
+  };
+
+  // totals
+  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
   const totalAmount = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
 
   return (
-    <div className="mx-[110px]  py-[60px]">
+    <div className="mx-[110px] py-[60px]">
       {/* Header with Cart Button */}
       <div className="pb-[32px] flex justify-between items-center">
         <div>
@@ -27,29 +48,20 @@ export default function StorePage() {
           <p className="text-[16px] uppercase font-[800]">stop by the store</p>
         </div>
 
-        {/* Cart Button */}
         <button
           onClick={() => setCheckoutOpen(true)}
           className="relative flex items-center gap-[4px] bg-[#F26509] text-[14px] text-[#fff] px-[12px] py-[8px] rounded-full"
         >
-          <Image
-            src="/icons/cart.svg"
-            alt="Cart"
-            width={18}
-            height={18}
-            className="mr-2"
-          />
+          <Image src="/icons/cart.svg" alt="Cart" width={18} height={18} />
           {cartCount > 0 && (
-            <span className="text-xs font-bold px-2 py-[2px]">
-              {cartCount}
-            </span>
+            <span className="text-xs font-bold px-2 py-[2px]">{cartCount}</span>
           )}
           item
         </button>
       </div>
 
       {/* Product Grid */}
-      <div className="grid  grid-cols-4 bg-[#fff] text-[#000] ">
+      <div className="grid grid-cols-4 bg-[#fff] text-[#000]">
         {products.map((product) => (
           <div
             key={product.id}
@@ -86,15 +98,13 @@ export default function StorePage() {
           </div>
         ))}
       </div>
-        <div className="text-center flex items-center justify-center gap-[4px] capitalize text-[14px] mt-[13.5px] font-[500]">
+
+      {/* Visit shop footer */}
+      <div className="text-center flex items-center justify-center gap-[4px] capitalize text-[14px] mt-[13.5px] font-[500]">
         <p>visit shop</p>
-         <Image
-                  src="/icons/right.svg"
-                  width="24"
-                  height="24"
-                  alt="add to cart"
-                />
-    </div>
+        <Image src="/icons/right.svg" width="24" height="24" alt="visit shop" />
+      </div>
+
       {/* Checkout Modal */}
       {isCheckoutOpen && (
         <div
@@ -103,7 +113,7 @@ export default function StorePage() {
         >
           <div
             className="bg-white text-black p-6 rounded-lg w-[500px] max-h-[80vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+            onClick={(e) => e.stopPropagation()}
           >
             <h2 className="text-xl font-bold mb-4">Checkout</h2>
 
@@ -124,7 +134,6 @@ export default function StorePage() {
                         </p>
                       </div>
 
-                      {/* Quantity Controls */}
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => removeFromCart(item.id)}
@@ -171,5 +180,6 @@ export default function StorePage() {
     </div>
   );
 }
+
 
 
