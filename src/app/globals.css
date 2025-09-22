@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  
+  font-family: var(--font-inter), sans-serif;
+}
+
+
+p, li {
+  font-family: var(--font-inter), sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-bebas-neue), sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+}
+
+@keyframes stripes {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 40px 40px; /* adjust speed/direction */
+  }
+}
+
+.bg-stripes {
+  background-image: repeating-linear-gradient(
+    135deg,
+    #F26509,
+    #F26509 7px,
+    #e85c08 25px,
+    #e85c08 35px
+  );
+  animation: stripes 3s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  min-width: 100%;
+  animation: marquee 20s linear infinite;
+}
