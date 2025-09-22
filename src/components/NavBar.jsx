@@ -19,8 +19,8 @@ export default function Navbar() {
   const [active, setActive] = useState("feed");
 
   return (
-    <nav className="mx-[110px] py-[16px]">
-      <ul className="flex justify-center space-x-[49.33px]">
+    <nav className="w-full px-4 md:px-12 lg:px-[110px] py-4">
+      <ul className="flex flex-wrap justify-center gap-x-[49.33px] my-[10px]">
         {navItems.map((item) => (
           <li
             key={item.id}
@@ -54,5 +54,6 @@ export default function Navbar() {
     </nav>
   );
 }
+
 
 
